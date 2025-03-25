@@ -13,3 +13,6 @@ Thumbs.db
 # Ignore the env
 venv/
 .env
+
+# Ignore the workspace file
+.code-workspace
