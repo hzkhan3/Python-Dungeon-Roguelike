@@ -15,4 +15,4 @@ venv/
 .env
 
 # Ignore the workspace file
-.code-workspace
+Dungeon Roguelike.code-workspace
