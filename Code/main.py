@@ -1,5 +1,5 @@
 import pygame
-from settings import *
+from Code.settings import *
 
 # Set up pygame
 pygame.init()
