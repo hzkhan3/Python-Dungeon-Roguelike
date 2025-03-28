@@ -19,7 +19,7 @@ while running:
 
     screen.fill('purple')
 
-    screen.blit(tile_set.subsurface((16, 0, 16, 16)), (64, 64))
+    screen.blit(tile_set.subsurface((0, 16, 16, 16)), (64, 64))
 
     pygame.display.flip()
     
