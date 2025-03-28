@@ -14,6 +14,12 @@ class Dungeon:
                 'top': [tileset_image.subsurface((16, 0, self.tile_size, self.tile_size)),
                         tileset_image.subsurface((32, 0, self.tile_size, self.tile_size)),
                         tileset_image.subsurface((48, 0, self.tile_size, self.tile_size))],
-                'bottom': [tileset_image.subsurface((16, 0, self.tile_size, self.tile_size))]
+                'bottom': [tileset_image.subsurface((16, 64, self.tile_size, self.tile_size)),
+                           tileset_image.subsurface((32, 64, self.tile_size, self.tile_size)),
+                           tileset_image.subsurface((48, 64, self.tile_size, self.tile_size))],
+                'side_left': [tileset_image.subsurface((0, 16, self.tile_size, self.tile_size)),
+                              tileset_image.subsurface((0, 32, self.tile_size, self.tile_size))],
+                'side_right': [tileset_image.subsurface((80, 16, self.tile_size, self.tile_size)),
+                               tileset_image.subsurface((80, 32, self.tile_size, self.tile_size))]
             }
         }
