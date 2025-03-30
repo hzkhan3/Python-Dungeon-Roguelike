@@ -1,11 +1,14 @@
 import pygame
 import os 
+import numpy as np
+import random
 
 class Dungeon:
     def __init__(self, width, height, tileset_image, tile_size = 16):
         self.width = width
         self.height = height
         self.tile_size = tile_size
+        self.grid = np.zeros((height, width), dtype = int)
         self.tiles = self.load_tiles(tileset_image)
     
     def load_tiles(self, tileset_image):
@@ -20,6 +23,46 @@ class Dungeon:
                 'side_left': [tileset_image.subsurface((0, 16, self.tile_size, self.tile_size)),
                               tileset_image.subsurface((0, 32, self.tile_size, self.tile_size))],
                 'side_right': [tileset_image.subsurface((80, 16, self.tile_size, self.tile_size)),
-                               tileset_image.subsurface((80, 32, self.tile_size, self.tile_size))]
-            }
+                               tileset_image.subsurface((80, 32, self.tile_size, self.tile_size))],
+                'bottom_corner_left': [tileset_image.subsurface((0, 64, self.tile_size, self.tile_size))],
+                'bottom_corner_right': [tileset_image.subsurface((80, 64, self.tile_size, self.tile_size))]
+            },
+            'floor': [tileset_image.subsurface((96, 0, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((112, 0, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((128, 0, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((144, 0, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((96, 16, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((96, 32, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((112, 16, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((112, 32, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((128, 16, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((128, 32, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((144, 16, self.tile_size, self.tile_size)),
+                      tileset_image.subsurface((144, 32, self.tile_size, self.tile_size))],
         }
+
+        return tiles
+
+    def random_walk(self, start_x=None, start_y=None, steps=500):
+        if start_x == None:
+            start_x = self.width // 2
+        if start_y == None:
+            start_y = self.height // 2
+        
+        x, y = start_x, start_y
+        self.grid[y, x] = 1
+
+        for _ in range(steps):
+            direction = random.randint(1, 4)
+
+            if direction == 1 and x > 0:
+                x -= 1
+            elif direction == 2 and x < self.width - 1:
+                x += 1
+            elif direction == 3 and y > 0:
+                y -= 1
+            elif direction == 4 and y < self.height - 1:
+                y += 1
+            
+            self.grid[y, x] = 1
+        
