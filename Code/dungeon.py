@@ -44,14 +44,20 @@ class Dungeon:
         return tiles
 
     def random_walk(self, start_x=None, start_y=None, steps=500):
+        
+        grid = self.grid
+
+        # If no specified start area, automatically start from the middle
         if start_x == None:
             start_x = self.width // 2
         if start_y == None:
             start_y = self.height // 2
         
+        # Start the middle with a floor
         x, y = start_x, start_y
-        self.grid[y, x] = 1
+        grid[y, x] = 1
 
+        # Depending on a randomly generated number move in a specific direction and place a floor
         for _ in range(steps):
             direction = random.randint(1, 4)
 
@@ -64,5 +70,9 @@ class Dungeon:
             elif direction == 4 and y < self.height - 1:
                 y += 1
             
-            self.grid[y, x] = 1
+            grid[y, x] = 1
+        
+        return grid
+    
+    
         
