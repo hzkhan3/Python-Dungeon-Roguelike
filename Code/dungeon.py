@@ -74,5 +74,6 @@ class Dungeon:
         
         return grid
     
-    
+    def draw(self, grid):
+        for x in 
         
